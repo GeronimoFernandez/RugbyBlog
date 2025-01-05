@@ -1,0 +1,40 @@
+# Mi Proyecto de Django: RugbyBlog 🏉
+
+Este proyecto es una aplicación web desarrollada con Django que permite gestionar y visualizar noticias relacionadas con el rugby. Incluye funcionalidades como registro de usuarios, creación de noticias, y un diseño optimizado con Bootstrap.
+
+# Funcionalidades principales 
+
+1. **Registro y autenticación de usuarios**.
+2. **Visualización de noticias** con imágenes y descripciones.
+4. **Sistema de roles** para administradores y usuarios regulares.
+5. **Diseño responsivo** con Bootstrap 5.
+
+## Requisitos 🛠️
+
+Antes de comenzar, asegúrate de tener instalados:
+
+- **Python 3.8 o superior**
+- **Django 4.2 o superior**
+- Un entorno virtual (recomendado)
+
+## Instalación 💻
+
+Sigue estos pasos para configurar el proyecto en tu máquina local:
+
+1. Clona este repositorio:
+   git clone https://github.com/GeronimoFernandez/RugbyBlog.git 'nombre_que_quieras'
+
+2. Navega al directorio del proyecto:
+cd 'nombre_que_quieras'
+
+3. Crea y activa un entorno virtual:
+
+4. instala las dependencias requeridas:
+pip install -r requirements.txt
+
+5. Realizar las migraciones en la base de datos:
+python manage.py migrate
+
+6. iniciar el servidor: 
+python manage.py runserver
+
