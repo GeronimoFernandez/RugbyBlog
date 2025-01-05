@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+
+    <!-- Enlace a Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ka9WzB+1dmMkmKTIn4sbLFbdA3PlvcHX1h4vZD0RYtse0l6a5kXz9XbMZ9xwS9uS" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            /* Fondo de la página */
+            background-image: url("{% static 'images/campo_rugby.jpg' %}");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            margin-bottom: 30px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-body {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff; /* Color blanco para el texto */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Aumento de la sombra */
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #fff; /* Color blanco para el texto */
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .pagination .page-item a {
+            color: #007bff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .pagination .page-item a:hover {
+            color: #0056b3;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Ajustes para la imagen y el contenido */
+        .card-img-left {
+            width: 30%; /* El ancho de la imagen será el 30% */
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .card-body-left {
+            width: 70%; /* El contenido ocupará el 70% restante */
+            padding-left: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con más opacidad */
+            border-radius: 15px;
+        }
+
+        .card-content-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Contenido de la página -->
+    <div class="container mt-5 pt-5">
+        <h1 class="mb-4 text-center text-primary">Últimas Noticias</h1>
+
+        <!-- Contenedor de Noticias -->
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-4 mb-4">
+                    <!-- Card de cada noticia -->
+                    <div class="card">
+                        <div class="card-content-wrapper">
+                            {% if post.imagen %}
+                                <img src="{{ post.imagen.url }}" class="card-img-left" alt="{{ post.titulo }}">
+                            {% endif %}
+                            <div class="card-body-left">
+                                <h5 class="card-title">{{ post.titulo }}</h5>
+                                <p class="card-text">{{ post.descripcion|slice:":150" }}...</p>
+                                <a href="{% url 'detalle_noticia' post.id %}" class="btn btn-primary">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No hay noticias disponibles en este momento.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Paginación -->
+        <div class="d-flex justify-content-center mt-4">
+            {% if posts.has_previous %}
+                <a href="?page=1" class="btn btn-outline-secondary mx-2">Primera</a>
+                <a href="?page={{ posts.previous_page_number }}" class="btn btn-outline-secondary mx-2">Anterior</a>
+            {% endif %}
+            <span class="mx-2">Página {{ posts.number }} de {{ posts.paginator.num_pages }}</span>
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}" class="btn btn-outline-secondary mx-2">Siguiente</a>
+                <a href="?page={{ posts.paginator.num_pages }}" class="btn btn-outline-secondary mx-2">Última</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Blog de Noticias. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka9WzB+1dmMkmKTIn4sbLFbdA3PlvcHX1h4vZD0RYtse0l6a5kXz9XbMZ9xwS9uS" crossorigin="anonymous"></script>
+</body>
+</html>

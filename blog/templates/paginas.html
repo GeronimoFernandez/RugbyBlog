@@ -1,0 +1,10 @@
+<h1>Blog de Rugby</h1>
+<ul>
+    {% for blog in blogs %}
+        <li>
+            <h2>{{ blog.titulo }}</h2>
+            <p>{{ blog.subtitulo }}</p>
+            <a href="{% url 'detalle_blog' blog.id %}">Leer más</a>
+        </li>
+    {% endfor %}
+</ul>

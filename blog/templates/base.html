@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RugbyBlog</title>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'home_lobby' %}">Inicio</a>
+            <a href="{% url 'categoria_rugby_noticias' %}">Noticias</a>
+            <a href="{% url 'categoria_analisis' %}">Análisis</a>
+            <a href="{% url 'categoria_entrevistas' %}">Entrevistas</a>
+            <a href="{% url 'acerca_de' %}">Acerca de mí</a>
+        </nav>
+    </header>
+    <!-- El resto de tu contenido -->
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- blog/templates/base_generic.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Blog</title>
+</head>
+<body>
+  <header>
+    <h1>Bienvenido a Mi Blog</h1>
+    <nav>
+      <a href="{% url 'login' %}">Iniciar sesión</a>
+      <a href="{% url 'registro' %}">Registrarse</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Mi Blog</p>
+  </footer>
+</body>
+</html>
+
